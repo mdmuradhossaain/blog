@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>অক্ষরলোক — বাংলা সাহিত্যের আঙিনা</title>
+  <meta name="description" content="বাংলা কবিতা, গল্প, প্রবন্ধ — অক্ষরলোকে স্বাগতম" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+/* ============================================
+   অক্ষরলোক — style.css
+   ============================================ */
+
+:root {
+  --ink:       #1a1614;
+  --paper:     #faf7f2;
+  --gold:      #c9a84c;
+  --gold-dim:  #e8d5a3;
+  --indigo:    #2d3561;
+  --indigo-lt: #3d4a80;
+  --mist:      #f0ebe3;
+  --text:      #2e2a27;
+  --text-soft: #7a6e65;
+  --border:    #dfd8cd;
+
+  --font-serif: 'Noto Serif Bengali', 'Noto Serif', Georgia, serif;
+  --font-body:  'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --ease: 0.25s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ── LAYOUT ─────────────────────────────── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* ── HEADER ──────────────────────────────── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,247,242,0.93);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow var(--ease);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+.logo { display: flex; flex-direction: column; line-height: 1.2; }
+.logo-bn {
+  font-family: var(--font-serif);
+  font-size: 1.4rem; font-weight: 700;
+  color: var(--indigo);
+}
+.logo-sub { font-size: 0.7rem; color: var(--text-soft); letter-spacing: 0.05em; }
+
+.main-nav { display: flex; gap: var(--space-md); }
+.nav-link {
+  font-size: 0.95rem; font-weight: 500;
+  color: var(--text-soft);
+  position: relative;
+  transition: color var(--ease);
+}
+.nav-link::after {
+  content: ''; position: absolute;
+  left: 0; bottom: -3px;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width var(--ease);
+}
+.nav-link:hover, .nav-link.active { color: var(--indigo); }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+.hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--text); transition: var(--ease);
+}
+.mobile-nav {
+  display: none; flex-direction: column;
+  background: var(--paper);
+  border-top: 1px solid var(--border);
+  padding: var(--space-sm) var(--space-md);
+  gap: var(--space-sm);
+}
+.mobile-nav a {
+  font-size: 1rem; font-weight: 500; color: var(--text);
+  padding: 0.4rem 0; border-bottom: 1px solid var(--mist);
+}
+.mobile-nav.open { display: flex; }
+
+/* ── HERO ────────────────────────────────── */
+.hero {
+  position: relative;
+  background: var(--indigo);
+  overflow: hidden;
+  padding: var(--space-xl) 0;
+  text-align: center;
+}
+.hero-motif {
+  position: absolute; top: 50%; left: 0; right: 0;
+  transform: translateY(-50%);
+  opacity: 0.6; pointer-events: none;
+}
+.hero-motif svg { width: 100%; }
+.hero-content { position: relative; z-index: 2; }
+.hero-eyebrow {
+  font-size: 0.8rem; letter-spacing: 0.18em;
+  color: var(--gold-dim); text-transform: uppercase;
+  margin-bottom: var(--space-md);
+}
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 700; color: #fff;
+  line-height: 1.25; margin-bottom: var(--space-md);
+}
+.hero-desc {
+  max-width: 560px; margin: 0 auto var(--space-md);
+  color: var(--gold-dim); font-size: 1.05rem; line-height: 1.9;
+}
+.btn-primary {
+  display: inline-block;
+  background: var(--gold); color: var(--ink);
+  font-weight: 600; font-size: 0.95rem;
+  padding: 0.75rem 2.2rem; border-radius: 2px;
+  letter-spacing: 0.04em;
+  transition: background var(--ease), transform var(--ease);
+}
+.btn-primary:hover { background: var(--gold-dim); transform: translateY(-2px); }
+
+/* ── ORNAMENT ────────────────────────────── */
+.ornament-divider { display: flex; justify-content: center; padding: var(--space-md) 0; }
+.ornament-divider svg { width: 300px; }
+
+/* ── SECTION COMMON ─────────────────────── */
+.section-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: var(--space-sm);
+}
+.section-eyebrow.centered { text-align: center; }
+.section-header {
+  display: flex; align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+.see-all {
+  font-size: 0.88rem; color: var(--indigo); font-weight: 500;
+  transition: color var(--ease);
+}
+.see-all:hover { color: var(--gold); }
+
+/* ── FEATURED ────────────────────────────── */
+.featured { padding: var(--space-lg) 0 var(--space-sm); }
+.featured-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  padding: var(--space-md) clamp(1.5rem, 4vw, 3rem);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  max-width: 780px;
+}
+.featured-meta { display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm); }
+.tag {
+  background: var(--indigo); color: #fff;
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.1em; padding: 0.2rem 0.7rem;
+  border-radius: 2px; display: inline-block;
+}
+.date { font-size: 0.82rem; color: var(--text-soft); }
+.featured-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight: 700; color: var(--indigo);
+  line-height: 1.35; margin-bottom: var(--space-sm);
+}
+.featured-excerpt { color: var(--text-soft); font-size: 1rem; margin-bottom: var(--space-sm); max-width: 640px; }
+.featured-poem, .stanza {
+  border-left: 2px solid var(--gold-dim);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--mist);
+  margin: var(--space-sm) 0 var(--space-md);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.featured-poem p, .stanza {
+  font-family: var(--font-serif);
+  font-size: 1.05rem; line-height: 2.2;
+  color: var(--text); font-style: italic;
+}
+.read-more {
+  font-weight: 600; font-size: 0.9rem;
+  color: var(--gold); letter-spacing: 0.04em;
+  transition: color var(--ease);
+}
+.read-more:hover { color: var(--indigo); }
+
+/* ── POST GRID ───────────────────────────── */
+.posts-section { padding: var(--space-sm) 0 var(--space-lg); }
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-md);
+}
+.post-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex; flex-direction: column; gap: 0.75rem;
+  transition: box-shadow var(--ease), transform var(--ease);
+  cursor: pointer;
+}
+.post-card:hover {
+  box-shadow: 0 8px 30px rgba(45,53,97,0.1);
+  transform: translateY(-3px);
+}
+.post-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem; font-weight: 600;
+  color: var(--indigo); line-height: 1.4;
+}
+.post-excerpt { font-size: 0.92rem; color: var(--text-soft); line-height: 1.8; flex: 1; }
+.post-footer {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--mist);
+}
+.read-link {
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--gold); transition: color var(--ease);
+}
+.read-link:hover { color: var(--indigo); }
+
+/* ── CATEGORIES ──────────────────────────── */
+.categories-section { padding: var(--space-lg) 0; background: var(--mist); }
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-md); margin-top: var(--space-md);
+}
+.cat-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0.5rem;
+  text-align: center; cursor: pointer;
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+.cat-card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(201,168,76,0.15); }
+.cat-icon {
+  font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700;
+  color: var(--indigo); background: var(--mist);
+  width: 60px; height: 60px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.cat-name { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 600; color: var(--indigo); }
+.cat-count { font-size: 0.78rem; color: var(--text-soft); }
+
+/* ── QUOTE BAND ──────────────────────────── */
+.quote-band { background: var(--indigo); padding: var(--space-lg) 0; text-align: center; }
+.site-quote p {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+  font-style: italic; color: var(--gold-dim);
+  line-height: 1.9; max-width: 680px;
+  margin: 0 auto var(--space-sm);
+}
+.site-quote cite { font-size: 0.85rem; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; }
+
+/* ── NEWSLETTER ──────────────────────────── */
+.newsletter-section {
+  padding: var(--space-lg) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.newsletter-inner {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md); flex-wrap: wrap;
+}
+.newsletter-text h2 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem; color: var(--indigo); margin-bottom: 0.5rem;
+}
+.newsletter-text p { color: var(--text-soft); font-size: 0.95rem; }
+.newsletter-form { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.newsletter-form input {
+  flex: 1; min-width: 240px;
+  border: 1px solid var(--border); border-radius: 2px;
+  padding: 0.7rem 1.2rem;
+  font-family: var(--font-body); font-size: 0.95rem;
+  background: var(--paper); color: var(--text); outline: none;
+  transition: border-color var(--ease);
+}
+.newsletter-form input:focus { border-color: var(--gold); }
+.newsletter-form button {
+  background: var(--indigo); color: #fff;
+  font-family: var(--font-body); font-weight: 600;
+  font-size: 0.9rem; padding: 0.7rem 1.8rem;
+  border: none; border-radius: 2px; cursor: pointer;
+  transition: background var(--ease);
+}
+.newsletter-form button:hover { background: var(--gold); color: var(--ink); }
+
+/* ── FOOTER ──────────────────────────────── */
+.site-footer { background: var(--ink); padding: var(--space-lg) 0 0; }
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--space-md); padding-bottom: var(--space-lg);
+}
+.footer-brand .logo-bn {
+  color: var(--gold); font-family: var(--font-serif);
+  font-size: 1.5rem; font-weight: 700;
+  display: block; margin-bottom: 0.75rem;
+}
+.footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.88rem; line-height: 1.8; }
+.footer-links h4, .footer-social h4 {
+  color: var(--gold-dim); font-size: 0.75rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+.footer-links a, .footer-social a {
+  display: block; color: rgba(255,255,255,0.5);
+  font-size: 0.9rem; margin-bottom: 0.5rem;
+  transition: color var(--ease);
+}
+.footer-links a:hover, .footer-social a:hover { color: var(--gold); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: var(--space-sm) 0; text-align: center;
+}
+.footer-bottom p { color: rgba(255,255,255,0.25); font-size: 0.8rem; }
+
+/* ── SINGLE POST VIEW ────────────────────── */
+#post-view { display: none; }
+.post-hero-section {
+  background: var(--indigo);
+  padding: var(--space-xl) 0 var(--space-lg);
+  text-align: center;
+}
+.post-hero-section .tag { display: inline-block; margin-bottom: var(--space-sm); }
+.post-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: #fff; font-weight: 700; line-height: 1.3;
+  max-width: 700px; margin: 0 auto var(--space-sm);
+}
+.post-hero-meta {
+  display: flex; justify-content: center;
+  gap: var(--space-md);
+  color: var(--gold-dim); font-size: 0.85rem;
+}
+.post-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
+  max-width: 1100px; margin: 0 auto;
+  align-items: start;
+}
+.post-body {
+  font-family: var(--font-serif);
+  font-size: 1.15rem; line-height: 2.2; color: var(--text);
+}
+.post-body p { margin-bottom: 1.5rem; }
+.post-body .stanza {
+  border-left: 3px solid var(--gold);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--mist);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: var(--space-md) 0;
+  font-style: italic; line-height: 2.4;
+}
+.post-tags {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  margin-top: var(--space-md); padding-top: var(--space-sm);
+  border-top: 1px solid var(--border);
+}
+.post-tags span {
+  background: var(--mist); color: var(--indigo);
+  font-size: 0.8rem; padding: 0.25rem 0.8rem;
+  border-radius: 30px; border: 1px solid var(--border);
+}
+.sidebar { position: sticky; top: 90px; }
+.sidebar-widget {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md); margin-bottom: var(--space-md);
+}
+.sidebar-widget h3 {
+  font-family: var(--font-serif); font-size: 1rem; color: var(--indigo);
+  margin-bottom: var(--space-sm); padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--gold); display: inline-block;
+}
+.sidebar-links a {
+  display: block; font-size: 0.9rem; color: var(--text-soft);
+  padding: 0.4rem 0; border-bottom: 1px solid var(--mist);
+  transition: color var(--ease); cursor: pointer;
+}
+.sidebar-links a:hover { color: var(--gold); }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.88rem; font-weight: 500;
+  color: var(--text-soft); margin-bottom: var(--space-md);
+  cursor: pointer; transition: color var(--ease);
+}
+.back-btn:hover { color: var(--indigo); }
+
+/* ── CATEGORIES PAGE ─────────────────────── */
+#category-view { display: none; }
+.category-header {
+  background: var(--indigo);
+  padding: var(--space-lg) 0;
+  text-align: center;
+}
+.category-header h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: #fff; margin-bottom: 0.5rem;
+}
+.category-header p { color: var(--gold-dim); }
+
+/* ── ABOUT PAGE ──────────────────────────── */
+#about-view { display: none; }
+.about-hero {
+  background: var(--indigo); padding: var(--space-xl) 0;
+  text-align: center;
+}
+.about-hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #fff; margin-bottom: var(--space-sm);
+}
+.about-hero p { color: var(--gold-dim); font-size: 1.05rem; max-width: 500px; margin: 0 auto; }
+.about-content {
+  max-width: 720px; margin: var(--space-lg) auto;
+  padding: 0 var(--space-md);
+  font-family: var(--font-serif);
+  font-size: 1.1rem; line-height: 2.2;
+  color: var(--text);
+}
+.about-content p { margin-bottom: 1.5rem; }
+.about-content h2 {
+  font-size: 1.4rem; color: var(--indigo);
+  margin: var(--space-md) 0 var(--space-sm);
+}
+
+/* ── REVEAL ANIMATION ────────────────────── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ──────────────────────────── */
+@media (max-width: 768px) {
+  .main-nav { display: none; }
+  .hamburger { display: flex; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+  .post-layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .newsletter-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .footer-inner { grid-template-columns: 1fr; }
+  .posts-grid { grid-template-columns: 1fr; }
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+// ============================================================
+//  posts.js — এখানেই সব পোস্ট লেখো
+//
+//  নতুন পোস্ট যোগ করতে নিচের মতো একটা object লেখো
+//  এবং সবার শুরুতে রাখো (নতুনটা আগে)
+// ============================================================
+
+const POSTS = [
+  {
+    id: "nodi-r-kache",                // URL-এ ব্যবহার হবে (ইংরেজিতে, ফাঁকা নেই)
+    title: "নদীর কাছে আমার কথা ছিল", // পোস্টের শিরোনাম
+    category: "কবিতা",                 // কবিতা / ছোটগল্প / প্রবন্ধ / স্মৃতিকথা / উপন্যাস
+    date: "১৫ জুন, ২০২৬",             // বাংলায় তারিখ
+    excerpt: "সেদিন নদীর পাড়ে দাঁড়িয়ে বুঝেছিলাম — জল শুধু বয়ে যায় না, সে কথা বলে।",
+    // content: HTML লেখো। কবিতার স্তবক <div class="stanza"> দিয়ে মোড়াও।
+    content: `
+      <p>সেদিন নদীর পাড়ে দাঁড়িয়ে বুঝেছিলাম — জল শুধু বয়ে যায় না, সে কথা বলে।
+      পাথরের বুকে আঘাত করে, বাঁকে বাঁকে নিজেকে খুঁজে পায়। আমরাও কি তেমন নই?</p>
+
+      <div class="stanza">
+        নদী আমাকে বলেছিল —<br>
+        থামা মানে মৃত্যু নয়,<br>
+        থামা মানে গভীর হওয়া।<br>
+        আমি শুনিনি। তুমি শুনবে?
+      </div>
+
+      <p>বর্ষার নদী আর শীতের নদী এক নয়। তবু দুটোই নদী। আমাদের জীবনও তেমন —
+      কখনো পূর্ণ, কখনো শীর্ণ, কিন্তু সবসময় প্রবাহমান।</p>
+
+      <div class="stanza">
+        শীতের নদী শুকিয়ে গেলে<br>
+        মানুষ ভাবে — নদী মরে গেছে।<br>
+        কিন্তু বালুর নিচে<br>
+        জল থাকে। সবসময় থাকে।
+      </div>
+
+      <div class="stanza">
+        নদীর কাছে আমার কথা ছিল —<br>
+        বলা হয়নি।<br>
+        কিন্তু নদী জানে।<br>
+        নদী সব জানে।<br>
+        কারণ সব কথাই একদিন জলে ভাসে।
+      </div>
+    `,
+    tags: ["কবিতা", "নদী", "প্রকৃতি"],
+  },
+
+  {
+    id: "shesh-chithi-r-por",
+    title: "শেষ চিঠির পর",
+    category: "ছোটগল্প",
+    date: "১০ জুন, ২০২৬",
+    excerpt: "চিঠিটা হাতে পেয়ে সে তিনদিন ঘর থেকে বের হয়নি। চতুর্থ দিন সকালে জানালা খুলে দেখল — রোদ উঠেছে।",
+    content: `
+      <p>চিঠিটা হাতে পেয়ে সে তিনদিন ঘর থেকে বের হয়নি।</p>
+      <p>প্রথম দিন কাঁদল। দ্বিতীয় দিন চুপ করে রইল। তৃতীয় দিন ঘুমাল — অনেক, অনেকক্ষণ।
+      চতুর্থ দিন সকালে জানালা খুলে দেখল — রোদ উঠেছে।</p>
+      <p>রোদ প্রতিদিনই ওঠে। কিন্তু সেদিন মনে হলো — এই রোদটা শুধু তার জন্যই।</p>
+      <p>চিঠিটা আর পড়ল না সে। ভাঁজ করে রাখল পুরনো বইয়ের ভেতরে। যে বইটা সে আর কোনোদিন খুলবে না, কিন্তু ফেলেও দেবে না।</p>
+      <p>কিছু কথা এমনই — রাখতেও পারো না, ছাড়তেও পারো না।</p>
+    `,
+    tags: ["ছোটগল্প", "অনুভূতি"],
+  },
+
+  {
+    id: "rabindranath-o-ekakit",
+    title: "রবীন্দ্রনাথ ও একাকীত্বের দর্শন",
+    category: "প্রবন্ধ",
+    date: "৫ জুন, ২০২৬",
+    excerpt: "একা থাকা আর একাকী হওয়ার মধ্যে যে পার্থক্য — রবীন্দ্রনাথ সেটা বুঝেছিলেন গানে, কবিতায়, নীরবতায়।",
+    content: `
+      <p>একা থাকা আর একাকী হওয়া — দুটো সম্পূর্ণ আলাদা অভিজ্ঞতা। রবীন্দ্রনাথ সারাজীবন
+      এই দুটোকে আলাদা করে দেখেছেন। তাঁর কবিতায়, তাঁর গানে, তাঁর নীরবতায়।</p>
+      <p>শান্তিনিকেতনের বাতাসে তিনি যে একাকীত্ব খুঁজেছিলেন, সেটা পালানোর একাকীত্ব নয় —
+      সেটা ভেতরে যাওয়ার একাকীত্ব। নিজের সাথে কথা বলার অবকাশ।</p>
+      <p>"আমার মাথা নত করে দাও হে তোমার চরণ-ধূলার তলে" — এই লাইনটা লেখার জন্য
+      কতটা গভীর নিঃসঙ্গতায় ডুবতে হয়েছিল তাঁকে?</p>
+      <p>আমরা একাকীত্বকে ভয় পাই। কিন্তু রবীন্দ্রনাথ দেখিয়েছেন — সবচেয়ে বড় সঙ্গ
+      নিজের সাথে নিজের।</p>
+    `,
+    tags: ["প্রবন্ধ", "রবীন্দ্রনাথ", "দর্শন"],
+  },
+
+  {
+    id: "bristi-r-banan",
+    title: "বৃষ্টির বানান",
+    category: "কবিতা",
+    date: "১ জুন, ২০২৬",
+    excerpt: "মেঘ যখন কাঁদে, আকাশ তখন পরিষ্কার হয়। আমরা উল্টো — কাঁদলে ঘোলা হই, থামলে স্বচ্ছ।",
+    content: `
+      <div class="stanza">
+        বৃষ্টির কোনো বানান নেই —<br>
+        শুধু শব্দ আছে।<br>
+        টুপটাপ। ঝমঝম। ঝিরঝির।<br>
+        প্রতিটা বৃষ্টির নিজের ভাষা।
+      </div>
+
+      <div class="stanza">
+        মেঘ যখন কাঁদে<br>
+        আকাশ তখন পরিষ্কার হয়।<br>
+        আমরা উল্টো —<br>
+        কাঁদলে ঘোলা হই,<br>
+        থামলে স্বচ্ছ।
+      </div>
+
+      <div class="stanza">
+        বৃষ্টির দিনে<br>
+        জানালার কাচে মুখ রাখি।<br>
+        ওপাশে জল, এপাশেও জল।<br>
+        মাঝখানে শুধু একটা কাচ —<br>
+        আর কত কথা।
+      </div>
+    `,
+    tags: ["কবিতা", "বৃষ্টি", "প্রকৃতি"],
+  },
+
+  {
+    id: "dadur-boi-er-almirah",
+    title: "দাদুর বইয়ের আলমারি",
+    category: "স্মৃতিকথা",
+    date: "২৫ মে, ২০২৬",
+    excerpt: "পুরনো কাঠের আলমারিতে যে বইগুলো ছিল, সেগুলো শুধু বই ছিল না — ছিল একটা মানুষের গোটা জীবন।",
+    content: `
+      <p>দাদুর ঘরে একটা পুরনো সেগুন কাঠের আলমারি ছিল। তালা দেওয়া। চাবিটা সবসময়
+      দাদুর পাঞ্জাবির পকেটে।</p>
+      <p>একদিন — আমার বয়স তখন বছর দশেক হবে — দাদু নিজেই সেই আলমারি খুলে দিলেন।
+      ভেতরে সারি সারি বই। শরৎচন্দ্র, বিভূতিভূষণ, মানিক বন্দ্যোপাধ্যায়। মাঝে মাঝে
+      হলুদ হয়ে যাওয়া পাতা।</p>
+      <p>"এগুলো শুধু বই না," দাদু বলেছিলেন, "এগুলো আমার বন্ধু।"</p>
+      <p>দাদু চলে গেছেন। আলমারিটা এখনো আছে। চাবিটা আমার কাছে।</p>
+      <p>কখনো কখনো রাতে খুলি। পাতা উল্টাই। মনে হয় দাদুর হাতের ছোঁয়া পাচ্ছি।</p>
+    `,
+    tags: ["স্মৃতিকথা", "পরিবার", "বই"],
+  },
+
+  {
+    id: "moddhyorater-cha",
+    title: "মধ্যরাতের চা",
+    category: "ছোটগল্প",
+    date: "২০ মে, ২০২৬",
+    excerpt: "ঘুম আসছিল না। রান্নাঘরে গিয়ে চুলা জ্বাললাম। কেটলির শব্দে মনে হলো কেউ একজন কথা বলছে।",
+    content: `
+      <p>রাত তিনটে। ঘুম আসছিল না।</p>
+      <p>রান্নাঘরে গেলাম। চুলা জ্বাললাম। কেটলিতে জল দিলাম।</p>
+      <p>কেটলি গরম হতে হতে একটা শব্দ করে — প্রথমে মৃদু, তারপর জোরালো। যেন কেউ
+      ভেতর থেকে বলছে, "আমি আছি। আমি আছি।"</p>
+      <p>চা বানালাম। জানালার পাশে দাঁড়ালাম। রাতের শহর। কিছু আলো, অনেক অন্ধকার।</p>
+      <p>চায়ে চুমুক দিলাম। গরম লাগল গলায়, বুকে।</p>
+      <p>কখনো কখনো মানুষ না হলেও চলে। একটা কাপ চাই শুধু।</p>
+    `,
+    tags: ["ছোটগল্প", "একাকীত্ব", "রাত"],
+  },
+];
+
+// ============================================================
+//  ⬇️  নিচের কোড পরিবর্তন করতে হবে না
+// ============================================================
+
+// সাইটের নাম ও তথ্য পরিবর্তন করতে পারো এখানে
+const SITE = {
+  name: "অক্ষরলোক",
+  tagline: "বাংলা সাহিত্যের আঙিনা",
+  description: "বাংলা সাহিত্যের আলোয় আলোকিত হোক প্রতিটি পাঠক।",
+  categories: ["কবিতা", "ছোটগল্প", "প্রবন্ধ", "স্মৃতিকথা", "উপন্যাস"],
+  quote: {
+    text: "যে জাতি জীবনে রস আহরণ করিতে পারে, মৃত্যু তাহার কাছে নতুন রসের সন্ধান মাত্র।",
+    author: "রবীন্দ্রনাথ ঠাকুর"
+  }
+};
+// ============================================================
+//  app.js — সব কিছু এখান থেকে render হয়
+//  এই ফাইল পরিবর্তন করতে হবে না
+// ============================================================
+
+// ── ইউটিলিটি ───────────────────────────────────────────────
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+// বাংলায় ক্যাটাগরির আইকন (প্রথম অক্ষর)
+function catIcon(cat) {
+  const icons = {
+    "কবিতা": "ক", "ছোটগল্প": "গ", "প্রবন্ধ": "প্র",
+    "স্মৃতিকথা": "স্মৃ", "উপন্যাস": "উপ"
+  };
+  return icons[cat] || cat[0];
+}
+
+// পড়ার সময় অনুমান
+function readTime(content) {
+  const words = content.replace(/<[^>]+>/g, '').length / 5;
+  const mins = Math.max(1, Math.round(words / 150));
+  return `পড়তে ${mins} মিনিট`;
+}
+
+// ── HEADER ──────────────────────────────────────────────────
+function renderHeader(activePage = 'home') {
+  const navItems = [
+    { id: 'home', label: 'হোম' },
+    { id: 'category-all', label: 'বিভাগ' },
+    { id: 'about', label: 'পরিচয়' },
+  ];
+  return `
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo" onclick="navigate('home')">
+        <span class="logo-bn">${SITE.name}</span>
+        <span class="logo-sub">${SITE.tagline}</span>
+      </a>
+      <nav class="main-nav">
+        ${navItems.map(n => `
+          <a href="#" class="nav-link ${activePage === n.id ? 'active' : ''}"
+             onclick="navigate('${n.id}'); return false;">${n.label}</a>
+        `).join('')}
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="মেনু">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      ${navItems.map(n => `
+        <a href="#" onclick="navigate('${n.id}'); closeMobileNav(); return false;">${n.label}</a>
+      `).join('')}
+    </div>
+  </header>`;
+}
+
+// ── FOOTER ──────────────────────────────────────────────────
+function renderFooter() {
+  const cats = SITE.categories;
+  return `
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-bn">${SITE.name}</span>
+        <p>${SITE.description}</p>
+      </div>
+      <div class="footer-links">
+        <h4>পাতা</h4>
+        <a href="#" onclick="navigate('home'); return false;">হোম</a>
+        <a href="#" onclick="navigate('category-all'); return false;">বিভাগ</a>
+        <a href="#" onclick="navigate('about'); return false;">পরিচয়</a>
+      </div>
+      <div class="footer-links">
+        <h4>বিভাগ</h4>
+        ${cats.slice(0,4).map(c =>
+          `<a href="#" onclick="navigate('category-${c}'); return false;">${c}</a>`
+        ).join('')}
+      </div>
+      <div class="footer-social">
+        <h4>যোগাযোগ</h4>
+        <a href="#">ফেসবুক</a>
+        <a href="#">ইউটিউব</a>
+        <a href="#">ইমেইল</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© ২০২৬ ${SITE.name}। সর্বস্বত্ব সংরক্ষিত।</p>
+    </div>
+  </footer>`;
+}
+
+// ── HOME PAGE ────────────────────────────────────────────────
+function renderHome() {
+  const featured = POSTS[0];
+  const rest = POSTS.slice(1);
+  const catCounts = {};
+  POSTS.forEach(p => { catCounts[p.category] = (catCounts[p.category] || 0) + 1; });
+
+  return `
+  ${renderHeader('home')}
+
+  <section class="hero">
+    <div class="hero-motif" aria-hidden="true">
+      <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,150 Q100,80 200,150 T400,150 T600,150 T800,150" stroke="#c9a84c" stroke-width="1.5" fill="none" opacity="0.35"/>
+        <path d="M0,170 Q100,100 200,170 T400,170 T600,170 T800,170" stroke="#c9a84c" stroke-width="0.8" fill="none" opacity="0.2"/>
+        <circle cx="200" cy="150" r="4" fill="#c9a84c" opacity="0.5"/>
+        <circle cx="400" cy="150" r="4" fill="#c9a84c" opacity="0.5"/>
+        <circle cx="600" cy="150" r="4" fill="#c9a84c" opacity="0.5"/>
+        <ellipse cx="200" cy="130" rx="18" ry="8" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.3" transform="rotate(-30 200 130)"/>
+        <ellipse cx="400" cy="130" rx="18" ry="8" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.3" transform="rotate(20 400 130)"/>
+        <ellipse cx="600" cy="130" rx="18" ry="8" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.3" transform="rotate(-15 600 130)"/>
+      </svg>
+    </div>
+    <div class="container hero-content">
+      <p class="hero-eyebrow">কবিতা · গল্প · প্রবন্ধ · উপন্যাস</p>
+      <h1 class="hero-title">শব্দের ভেতরে<br/>আলো থাকে</h1>
+      <p class="hero-desc">বাংলা সাহিত্যের অনন্ত আকাশে কিছু মুক্ত অক্ষর — পড়ুন, অনুভব করুন, হারিয়ে যান।</p>
+      <button class="btn-primary" onclick="document.getElementById('featured-section').scrollIntoView({behavior:'smooth'})">লেখা পড়ুন ↓</button>
+    </div>
+  </section>
+
+  <!-- Featured -->
+  <section class="featured" id="featured-section">
+    <div class="container">
+      <p class="section-eyebrow">✦ বিশেষ নির্বাচন</p>
+      <article class="featured-card reveal">
+        <div class="featured-meta">
+          <span class="tag">${featured.category}</span>
+          <span class="date">${featured.date}</span>
+        </div>
+        <h2 class="featured-title">${featured.title}</h2>
+        <p class="featured-excerpt">${featured.excerpt}</p>
+        <button class="read-more" onclick="navigate('post-${featured.id}')">সম্পূর্ণ পড়ুন →</button>
+      </article>
+    </div>
+  </section>
+
+  <div class="ornament-divider" aria-hidden="true">
+    <svg viewBox="0 0 400 30" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="15" x2="160" y2="15" stroke="#c9a84c" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="200" cy="15" r="6" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.7"/>
+      <circle cx="200" cy="15" r="2" fill="#c9a84c" opacity="0.7"/>
+      <circle cx="185" cy="15" r="2" fill="#c9a84c" opacity="0.4"/>
+      <circle cx="215" cy="15" r="2" fill="#c9a84c" opacity="0.4"/>
+      <line x1="240" y1="15" x2="400" y2="15" stroke="#c9a84c" stroke-width="0.8" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- Post Grid -->
+  <section class="posts-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">✦ সাম্প্রতিক লেখা</p>
+        <a href="#" class="see-all" onclick="navigate('category-all'); return false;">সব লেখা →</a>
+      </div>
+      <div class="posts-grid">
+        ${rest.map((p, i) => `
+          <article class="post-card reveal" style="transition-delay:${i*0.07}s"
+                   onclick="navigate('post-${p.id}')">
+            <span class="tag">${p.category}</span>
+            <h3 class="post-title">${p.title}</h3>
+            <p class="post-excerpt">${p.excerpt}</p>
+            <div class="post-footer">
+              <span class="date">${p.date}</span>
+              <span class="read-link">পড়ুন →</span>
+            </div>
+          </article>
+        `).join('')}
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories-section">
+    <div class="container">
+      <p class="section-eyebrow centered">✦ বিভাগ অনুযায়ী</p>
+      <div class="categories-grid">
+        ${SITE.categories.map((cat, i) => `
+          <div class="cat-card reveal" style="transition-delay:${i*0.08}s"
+               onclick="navigate('category-${cat}')">
+            <span class="cat-icon">${catIcon(cat)}</span>
+            <span class="cat-name">${cat}</span>
+            <span class="cat-count">${catCounts[cat] || 0}টি লেখা</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="quote-band">
+    <div class="container">
+      <blockquote class="site-quote">
+        <p>"${SITE.quote.text}"</p>
+        <cite>— ${SITE.quote.author}</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter-section">
+    <div class="container newsletter-inner">
+      <div class="newsletter-text">
+        <h2>নতুন লেখার খবর পান</h2>
+        <p>প্রতি সপ্তাহে নতুন কবিতা, গল্প বা প্রবন্ধ — সরাসরি আপনার ইমেইলে।</p>
+      </div>
+      <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+        <input type="email" placeholder="আপনার ইমেইল ঠিকানা" required />
+        <button type="submit">সদস্য হন</button>
+      </form>
+    </div>
+  </section>
+
+  ${renderFooter()}`;
+}
+
+// ── SINGLE POST PAGE ─────────────────────────────────────────
+function renderPost(postId) {
+  const post = POSTS.find(p => p.id === postId);
+  if (!post) return renderHome();
+
+  const others = POSTS.filter(p => p.id !== postId).slice(0, 5);
+
+  return `
+  ${renderHeader()}
+
+  <section class="post-hero-section">
+    <div class="container">
+      <span class="tag">${post.category}</span>
+      <h1 class="post-hero-title">${post.title}</h1>
+      <div class="post-hero-meta">
+        <span>${post.date}</span>
+        <span>·</span>
+        <span>${readTime(post.content)}</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="post-layout">
+    <article class="post-body">
+      <button class="back-btn" onclick="history.back()">← ফিরে যাও</button>
+      ${post.content}
+      <div class="post-tags">
+        ${(post.tags || []).map(t => `<span>${t}</span>`).join('')}
+      </div>
+    </article>
+    <aside class="sidebar">
+      <div class="sidebar-widget">
+        <h3>আরও পড়ুন</h3>
+        <div class="sidebar-links">
+          ${others.map(p =>
+            `<a onclick="navigate('post-${p.id}')">${p.title}</a>`
+          ).join('')}
+        </div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>বিভাগ</h3>
+        <div class="sidebar-links">
+          ${SITE.categories.map(cat => {
+            const n = POSTS.filter(p => p.category === cat).length;
+            return n ? `<a onclick="navigate('category-${cat}')">${cat} (${n})</a>` : '';
+          }).join('')}
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  ${renderFooter()}`;
+}
+
+// ── CATEGORY / ALL POSTS PAGE ────────────────────────────────
+function renderCategory(cat) {
+  const all = cat === 'all';
+  const filtered = all ? POSTS : POSTS.filter(p => p.category === cat);
+  const title = all ? 'সব লেখা' : cat;
+
+  return `
+  ${renderHeader('category-all')}
+
+  <section class="category-header">
+    <div class="container">
+      <h1 class="post-hero-title">${title}</h1>
+      <p class="hero-eyebrow">${filtered.length}টি লেখা</p>
+    </div>
+  </section>
+
+  ${!all ? '' : `
+  <div style="padding: 2rem 0; background: var(--mist);">
+    <div class="container" style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <button class="btn-filter ${cat==='all'?'active':''}" onclick="navigate('category-all')">সব</button>
+      ${SITE.categories.map(c =>
+        `<button class="btn-filter" onclick="navigate('category-${c}')">${c}</button>`
+      ).join('')}
+    </div>
+  </div>
+  `}
+
+  <section class="posts-section">
+    <div class="container">
+      <div class="posts-grid">
+        ${filtered.map((p, i) => `
+          <article class="post-card reveal" style="transition-delay:${i*0.06}s"
+                   onclick="navigate('post-${p.id}')">
+            <span class="tag">${p.category}</span>
+            <h3 class="post-title">${p.title}</h3>
+            <p class="post-excerpt">${p.excerpt}</p>
+            <div class="post-footer">
+              <span class="date">${p.date}</span>
+              <span class="read-link">পড়ুন →</span>
+            </div>
+          </article>
+        `).join('')}
+      </div>
+    </div>
+  </section>
+
+  ${renderFooter()}`;
+}
+
+// ── ABOUT PAGE ───────────────────────────────────────────────
+function renderAbout() {
+  return `
+  ${renderHeader('about')}
+
+  <section class="about-hero">
+    <div class="container">
+      <h1>${SITE.name} সম্পর্কে</h1>
+      <p>${SITE.tagline}</p>
+    </div>
+  </section>
+
+  <div class="about-content">
+    <p>এই ব্লগটি বাংলা সাহিত্যকে ভালোবাসার একটি ছোট্ট প্রয়াস।
+    কবিতা, গল্প, প্রবন্ধ — যা কিছু মনে আসে, তা এখানে লিখে রাখি।
+    পাঠক যদি একটুও আনন্দ পান, সেটাই পুরস্কার।</p>
+
+    <h2>কেন লিখি?</h2>
+    <p>বাংলা ভাষা শুধু যোগাযোগের মাধ্যম নয় — এটি একটি অনুভূতি, একটি ঐতিহ্য।
+    এই ভাষায় লেখা মানে শিকড়ের সাথে সংযুক্ত থাকা।</p>
+
+    <h2>যোগাযোগ</h2>
+    <p>লেখা পড়ে কিছু মনে হলে, বা নিজের কোনো লেখা শেয়ার করতে চাইলে —
+    ইমেইলে লিখুন। পাঠকের কথা শুনতে সবসময় ভালো লাগে।</p>
+  </div>
+
+  ${renderFooter()}`;
+}
+
+// ── NAVIGATION ENGINE ────────────────────────────────────────
+function navigate(page) {
+  window.scrollTo({ top: 0, behavior: 'instant' });
+
+  let html = '';
+  if (page === 'home') {
+    html = renderHome();
+  } else if (page === 'about') {
+    html = renderAbout();
+  } else if (page === 'category-all') {
+    html = renderCategory('all');
+  } else if (page.startsWith('category-')) {
+    const cat = decodeURIComponent(page.replace('category-', ''));
+    html = renderCategory(cat);
+  } else if (page.startsWith('post-')) {
+    const postId = page.replace('post-', '');
+    html = renderPost(postId);
+  } else {
+    html = renderHome();
+  }
+
+  document.getElementById('app').innerHTML = html;
+  window.history.pushState({ page }, '', `#${page}`);
+  initInteractions();
+  initReveal();
+}
+
+// ── INTERACTIONS ─────────────────────────────────────────────
+function initInteractions() {
+  // Mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+    });
+  }
+
+  // Sticky shadow
+  const header = document.getElementById('site-header');
+  const onScroll = () => {
+    if (header) header.style.boxShadow = window.scrollY > 10
+      ? '0 2px 20px rgba(26,22,20,0.08)' : 'none';
+  };
+  window.removeEventListener('scroll', window._onScroll);
+  window._onScroll = onScroll;
+  window.addEventListener('scroll', onScroll);
+}
+
+function closeMobileNav() {
+  const nav = document.getElementById('mobileNav');
+  if (nav) nav.classList.remove('open');
+}
+
+// ── REVEAL ANIMATION ─────────────────────────────────────────
+function initReveal() {
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+  // Trigger above-fold
+  els.forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+  });
+}
+
+// ── NEWSLETTER ────────────────────────────────────────────────
+function handleSubscribe(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  const input = e.target.querySelector('input');
+  btn.textContent = 'সদস্য হচ্ছেন...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = '✓ ধন্যবাদ!';
+    input.value = '';
+    setTimeout(() => { btn.textContent = 'সদস্য হন'; btn.disabled = false; }, 3000);
+  }, 1200);
+}
+
+// ── FILTER BUTTON STYLE ───────────────────────────────────────
+const filterStyle = document.createElement('style');
+filterStyle.textContent = `
+  .btn-filter {
+    background: #fff; border: 1px solid var(--border);
+    color: var(--text-soft); font-family: var(--font-body);
+    font-size: 0.88rem; padding: 0.4rem 1rem;
+    border-radius: 30px; cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .btn-filter:hover, .btn-filter.active {
+    background: var(--indigo); color: #fff; border-color: var(--indigo);
+  }
+`;
+document.head.appendChild(filterStyle);
+
+// ── BROWSER BACK/FORWARD ──────────────────────────────────────
+window.addEventListener('popstate', (e) => {
+  const page = e.state?.page || 'home';
+  navigate(page);
+});
+
+// ── INIT ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash.replace('#', '') || 'home';
+  navigate(hash);
+});
+  </script>
+</body>
+</html>
